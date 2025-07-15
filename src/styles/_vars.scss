@@ -1,0 +1,42 @@
+$neutral-0: #ffffff;
+$neutral-50: #f9f9f9;
+$neutral-100: #f0f0f0;
+$neutral-200: #e0e0e0;
+$neutral-300: #cfcfcf;
+$neutral-400: #bfbfbf;
+$neutral-500: #a0a0a0;
+$neutral-600: #808080;
+$neutral-700: #606060;
+$neutral-800: #404040;
+$neutral-900: #202020;
+$neutral-1000: #000000;
+
+
+$neutral-colors: (
+	neutral-0: $neutral-0,
+	neutral-50: $neutral-50,
+	neutral-100: $neutral-100,
+	neutral-200: $neutral-200,
+	neutral-300: $neutral-300,
+	neutral-400: $neutral-400,
+	neutral-500: $neutral-500,
+	neutral-600: $neutral-600,
+	neutral-700: $neutral-700,
+	neutral-800: $neutral-800,
+	neutral-900: $neutral-900,
+	neutral-1000: $neutral-1000
+);
+
+@each $name, $value in $neutral-colors {
+	.border-#{$name} {
+		border-color: #{$value};
+	}
+
+	.bg-#{$name} {
+		background-color: #{$value};
+	}
+
+	.text-#{$name} {
+		color: #{$value};
+	}
+}
