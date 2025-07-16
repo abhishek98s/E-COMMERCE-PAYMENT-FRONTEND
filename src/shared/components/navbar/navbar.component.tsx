@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ImageWrapper from '../img_wrapper/img_wrapper.component';
+import ImageWrapper from '../img-wrapper/img-wrapper.component';
 
 import styles from './navbar.modules.scss';
 
