@@ -1,0 +1,34 @@
+import Button from '@/shared/components/button';
+import ImageWrapper from '@/shared/components/img-wrapper/img-wrapper.component';
+import { IProduct } from '@/shared/types/products.types';
+
+type ProductBoxProps = {
+  product: IProduct;
+};
+
+const ProductBox = ({ product }: ProductBoxProps) => {
+  return (
+    <div className='product bg-neutral-0 border-neutral-200 rounded-[8px] p-3 pb-3 hover:shadow-xl hover:scale-[1.02]'>
+      <ImageWrapper className='aspect-[1.5] ' path={product.image} />
+
+      <div className='category mt-3 text-[14px] line-clamp-1 w-fit p-[2px_12px] color-neutral-500 opacity-80 border-neutral-200 bg-neutral-50 rounded-full'>
+        {product.category}
+      </div>
+
+      <div className='title mt-2 text-[16px] leading-[1.2] line-clamp-2 min-h-[34px]'>
+        {product.title}
+      </div>
+
+      <div className='flex items-center text-[14px] font-medium gap-[4px] mt-2'>
+        <ImageWrapper path='icons/star.svg' className='max-w-[20px]' />
+        <div className='rating'>{product.rating.rate}</div>
+      </div>
+
+      <div className='rating font-bold text-[22px] mt-3'>${product.price}</div>
+
+      <Button className='mt-4' value='Add to cart' />
+    </div>
+  );
+};
+
+export default ProductBox;
