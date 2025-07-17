@@ -10,21 +10,21 @@ const Navbar = () => {
 
   return (
     <nav className={`border-bottom-neutral-200 bg-neutral-0`}>
-      <div className='container px-[20px] mx-auto border-red-100 border-b-0'>
-        <div className='flex min-h-[80px] justify-between items-center px-2'>
-          <div className='logo font-bold text-[20px] text-neutral-900'>
+      <div className="container px-[20px] mx-auto border-red-100 border-b-0">
+        <div className="flex min-h-[80px] justify-between items-center px-2">
+          <div className="logo font-bold text-[20px] text-neutral-900">
             <Link href={'/'}>E_COM</Link>
           </div>
           <Link
             href={`/cart`}
-            className='cart-wrapper relative flex-center size-[44px] bg-neutral-50 border-neutral-200 rounded-full '
+            className="cart-wrapper relative flex-center size-[44px] bg-neutral-50 border-neutral-200 rounded-full "
           >
             <ImageWrapper
-              className='size-[18px]'
-              path='/icons/cart.svg'
+              className="size-[18px]"
+              path="/icons/cart.svg"
               flex-center
             />
-            <div className='absolute flex-center bg-neutral-1000 text-white rounded-full block text-[12px] font-bold top-0 right-0 translate-x-[10px] translate-y-[-10px] size-[24px]'>
+            <div className="absolute flex-center bg-neutral-1000 text-white rounded-full block text-[12px] font-bold top-0 right-0 translate-x-[10px] translate-y-[-10px] size-[24px]">
               {cart.length}
             </div>
           </Link>
