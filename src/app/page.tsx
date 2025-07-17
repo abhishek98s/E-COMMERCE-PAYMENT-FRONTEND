@@ -1,7 +1,10 @@
 'use client';
 
 import Pagination from '@/features/pagination';
+import ProductFilter from '@/features/product-filter';
+import { IFilter } from '@/features/product-filter/types';
 import ProductList from '@/features/productList';
+
 import { useFetch } from '@/shared/hooks/use-fetch.hooks';
 import { IProduct } from '@/shared/types/products.types';
 import { useEffect, useMemo, useState } from 'react';
@@ -13,62 +16,70 @@ export default function Home() {
 
   const [itemPerPage] = useState<number>(8);
 
-  const totalPage = Math.ceil(data.length / itemPerPage);
-
   const lastItemindex = currentPage * itemPerPage;
   const firstItemindex = lastItemindex - itemPerPage;
 
   const [allProducts, setAllProducts] = useState<IProduct[]>([]);
 
+  const [filters, setFilters] = useState<IFilter>({
+    category: 'All',
+    sortBy: 'Default',
+    search: null,
+  });
+
   useEffect(() => {
     setAllProducts(data);
   }, [loading]);
 
-  type Ifilter = {
-    category: string;
-    sortBy: 'default' | 'low-high' | 'high-low' | 'name' | 'rating';
-  };
-
-  const [filters, setFilters] = useState<Ifilter>({
-    category: 'all',
-    sortBy: 'default',
-  });
-
   const filteredSortedProducts = useMemo(() => {
+    const { category, sortBy, search } = filters;
     let result = [...allProducts];
 
-    if (filters.category != 'all') {
-      result = result.filter((p: IProduct) => p.category === filters.category);
+    if (category != 'All') {
+      result = result.filter((p: IProduct) => p.category === category);
     }
 
-    if (filters.sortBy === 'low-high') {
+    if (sortBy === 'low-high') {
       result.sort((a: IProduct, b: IProduct) => a.price - b.price);
-    } else if (filters.sortBy === 'high-low') {
+    } else if (sortBy === 'high-low') {
       result.sort((a: IProduct, b: IProduct) => b.price - a.price);
-    } else if (filters.sortBy === 'rating') {
+    } else if (sortBy === 'rating') {
       result.sort((a: IProduct, b: IProduct) => b.rating.rate - a.rating.rate);
-    } else if (filters.sortBy === 'name') {
+    } else if (sortBy === 'title') {
       result.sort((a: IProduct, b: IProduct) =>
         a.title.toLowerCase().localeCompare(b.title.toLowerCase())
       );
     }
 
+    if (search) {
+      const regex = new RegExp(search, 'i');
+      return result.filter((a: IProduct) => regex.test(a.title));
+    }
     return result;
-  }, [allProducts, filters]);
+  }, [allProducts, filters, loading]);
 
-  const currentItems = filteredSortedProducts.slice(
-    firstItemindex,
-    lastItemindex
-  );
+  const currentItems = useMemo(() => {
+    return filteredSortedProducts.slice(firstItemindex, lastItemindex);
+  }, [filteredSortedProducts, firstItemindex, lastItemindex]);
 
   return (
-    <div className='container mx-auto'>
-      <ProductList productList={currentItems} />
+    <>
+      <ProductFilter allProducts={allProducts} setFilters={setFilters} />
+      <ProductList
+        filterSearch={filters.search}
+        loading={loading}
+        productList={currentItems}
+      />
       <Pagination
-        totalPage={totalPage}
+        allProducts={
+          filters.category !== 'All' || filters.search
+            ? currentItems
+            : allProducts
+        }
+        itemPerPage={itemPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-    </div>
+    </>
   );
 }
