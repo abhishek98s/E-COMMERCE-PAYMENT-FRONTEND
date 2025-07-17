@@ -1,17 +1,19 @@
+'use client';
+
 import { IProduct } from '@/shared/types/products.types';
 import Dropdown from '@/shared/components/dropdown';
 import ProductSearch from './components/product-search';
-import { ProductFilterProps } from './types';
-import { sortByList } from './utils';
+import { IFilter, ProductFilterProps } from './types';
+import { debounce, sortByList } from './utils';
+import { useMemo } from 'react';
 
 const ProductFilter = ({
   allProducts,
-  setSearchTitle,
   setFilters,
 }: ProductFilterProps) => {
   const categoryList = Array.from(
-    new Set(allProducts.map((p: IProduct) => p.category)),
-  );
+    new Set(allProducts.map((p: IProduct) => p.category))
+  ).concat('All');
 
   const onCategoryListClick = (category: string) => {
     setFilters((prev) => ({
@@ -21,24 +23,32 @@ const ProductFilter = ({
   };
 
   const onSortByListClick = (sortBy: string) => {
-    setFilters((prev) => ({
+    setFilters((prev: IFilter) => ({
       ...prev,
-      sortBy,
+      sortBy: sortBy as IFilter['sortBy'],
     }));
   };
 
-  return (
-    <div className="filter-wrapper flex flex-col gap-y-[8px] md:flex-row bg-neutral-0 rounded-[12px] shadow-sm p-[12px] mt-5">
-      <ProductSearch setSearchTitle={setSearchTitle} />
+  const onSearchChange = (search: string) => {
+    setFilters((prev: IFilter) => ({
+      ...prev,
+      search: search,
+    }));
+  };
 
-      <div className="ml-auto flex gap-[16px]">
+const debouncedSearchChange = useMemo(() => debounce(onSearchChange, 300), []);
+  return (
+    <div className='filter-wrapper flex flex-col gap-y-[8px] md:flex-row bg-neutral-0 rounded-[12px] shadow-sm p-[12px] mt-5'>
+      <ProductSearch setSearchTitle={debouncedSearchChange} />
+
+      <div className='ml-auto flex gap-[16px]'>
         <Dropdown
-          defaultOption="All"
+          defaultOption='All'
           onListClick={onCategoryListClick}
           dropdownList={categoryList}
         />
         <Dropdown
-          defaultOption="Default"
+          defaultOption='Default'
           onListClick={onSortByListClick}
           dropdownList={sortByList}
         />
