@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import ImageWrapper from '../img-wrapper/img-wrapper.component';
 
-import styles from './navbar.modules.scss';
-
 const Navbar = () => {
   return (
     <nav
-      className={`${styles.navbar_wrapepr} border-bottom-neutral-200 bg-neutral-0`}
+      className={`border-bottom-neutral-200 bg-neutral-0`}
     >
       <div className='container px-[20px] mx-auto border-red-100 border-b-0'>
         <div className='flex min-h-[80px] justify-between items-center px-2'>
