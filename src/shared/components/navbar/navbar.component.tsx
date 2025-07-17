@@ -3,15 +3,16 @@ import ImageWrapper from '../img-wrapper/img-wrapper.component';
 
 const Navbar = () => {
   return (
-    <nav
-      className={`border-bottom-neutral-200 bg-neutral-0`}
-    >
+    <nav className={`border-bottom-neutral-200 bg-neutral-0`}>
       <div className='container px-[20px] mx-auto border-red-100 border-b-0'>
         <div className='flex min-h-[80px] justify-between items-center px-2'>
           <div className='logo font-bold text-[20px] text-neutral-900'>
-            E_COM
+            <Link href={'/'}>E_COM</Link>
           </div>
-          <Link href={`/cart`} className='cart-wrapper relative flex-center size-[44px] bg-neutral-50 border-neutral-200 rounded-full '>
+          <Link
+            href={`/cart`}
+            className='cart-wrapper relative flex-center size-[44px] bg-neutral-50 border-neutral-200 rounded-full '
+          >
             <ImageWrapper
               className='size-[18px]'
               path='/icons/cart.svg'
