@@ -9,7 +9,7 @@ type ProductBoxProps = {
 
 const ProductBox = ({ product }: ProductBoxProps) => {
   return (
-    <div className='product bg-neutral-0 border-neutral-200 rounded-[8px] p-3 pb-3 hover:shadow-xl hover:scale-[1.02]'>
+    <div className='product bg-neutral-0 border-neutral-200 rounded-[8px] p-3 pb-3 hover:shadow-xl hover:translate-y-[-8px]'>
       <Link href={`/product/${product.id}`}>
         <ImageWrapper className='zoom aspect-[1.5] ' path={product.image} />
       </Link>
