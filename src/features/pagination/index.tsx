@@ -1,16 +1,23 @@
-import { Dispatch, SetStateAction } from 'react';
+import { IProduct } from '@/shared/types/products.types';
+import { Dispatch, SetStateAction, useMemo } from 'react';
 
 type PaginationProps = {
   setCurrentPage: Dispatch<SetStateAction<number>>;
-  totalPage: number;
   currentPage: number;
+  allProducts: IProduct[];
+  itemPerPage: number;
 };
 
 const Pagination = ({
-  totalPage,
   currentPage,
+  allProducts,
+  itemPerPage,
   setCurrentPage,
 }: PaginationProps) => {
+  const totalPage = useMemo(() => {
+    return Math.ceil(allProducts.length / itemPerPage);
+  }, [allProducts, itemPerPage]);
+
   const pages = [...Array(totalPage)].map((a, i) => i + 1);
 
   const onBtnClick = (num: number) => {
@@ -23,8 +30,11 @@ const Pagination = ({
     setCurrentPage((prev) => prev + num);
   };
 
+  if (!totalPage) {
+    return null;
+  }
   return (
-    <div className='pagination-wrapper mx-auto flex-center gap-[12px]'>
+    <div className='pagination-wrapper mx-auto flex-center gap-[12px] my-4'>
       <button
         onClick={() => onBtnClick(-1)}
         disabled={currentPage === 1 ? true : false}
