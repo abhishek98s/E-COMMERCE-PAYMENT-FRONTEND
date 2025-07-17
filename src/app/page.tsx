@@ -19,7 +19,7 @@ export default function Home() {
   const lastItemindex = currentPage * itemPerPage;
   const firstItemindex = lastItemindex - itemPerPage;
 
-  const [allProducts, setAllProducts] = useState<IProduct[]>([]);
+  const [allProducts, setAllProducts] = useState<IProduct[] | []>([]);
 
   const [filters, setFilters] = useState<IFilter>({
     category: 'All',
@@ -28,7 +28,8 @@ export default function Home() {
   });
 
   useEffect(() => {
-    setAllProducts(data);
+    const products: IProduct[] = Array.isArray(data) ? data : [];
+    setAllProducts(products);
   }, [loading]);
 
   const filteredSortedProducts = useMemo(() => {

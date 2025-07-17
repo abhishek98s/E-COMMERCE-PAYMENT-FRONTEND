@@ -6,7 +6,7 @@ import { APP_BASE_URL } from '../utils/app';
 import axios from 'axios';
 
 export const useFetch = <T,>(url: string, options = {}) => {
-  const [data, setData] = useState<T[]>([]);
+  const [data, setData] = useState<T[] | null | T>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
