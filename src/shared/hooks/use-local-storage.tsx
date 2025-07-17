@@ -4,14 +4,12 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 type useLocalStorageProps<A> = {
   key: string;
-  initialValue: A[];
 };
 
 const useLocalStorage = <A,>({
   key,
-  initialValue,
 }: useLocalStorageProps<A>): [A[], Dispatch<SetStateAction<A[]>>] => {
-  const [value, setValue] = useState<A[]>(initialValue!);
+  const [value, setValue] = useState<A[]>([]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

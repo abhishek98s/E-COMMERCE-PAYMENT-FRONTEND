@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { CartContext } from '@/shared/context/cart.context';
 
 const Navbar = () => {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   return (
     <nav className={`border-bottom-neutral-200 bg-neutral-0`}>
