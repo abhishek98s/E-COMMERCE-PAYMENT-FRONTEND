@@ -1,8 +1,10 @@
-import Link from "next/link";
+import Link from 'next/link';
+import ImageWrapper from '../img-wrapper/img-wrapper.component';
 
 const btnStyle = {
-  primary: 'bg-neutral-900 text-neutral-0',
-  secondary: 'bg-neutral-50 text-neutral-600 border-neutral-100',
+  primary: 'btn-primary bg-neutral-900 text-neutral-0',
+  secondary:
+    'btn-secondary bg-neutral-50 hover:bg-neutral-100 text-neutral-700 opacity-90 border-neutral-100',
 };
 
 type ButtonProps = {
@@ -11,21 +13,30 @@ type ButtonProps = {
   type?: 'button' | 'submit';
   className?: string;
   link?: string;
+  alignLeft?: boolean;
+  iconPath?: string;
 };
 
 const Button = ({
   value,
-  btnType = "primary",
-  link = "#",
-  className,
+  btnType = 'primary',
   type = 'button',
+  className,
+  link = '#',
+  alignLeft = false,
+  iconPath = '',
 }: ButtonProps) => {
   return (
     <Link
       href={link}
       type={type}
-      className={`${className} ${btnStyle[btnType]} inline-flex justify-center items-center w-full rounded-[8px] min-h-[44px] font-[600] text-[16px] tracking-[0.5px]`}
+      className={`${className} ${btnStyle[btnType]} ${alignLeft ? '' : 'justify-center'} btn relative inline-flex items-center w-full rounded-[8px] min-h-[44px] font-[600] text-[16px] tracking-[0.5px]`}
     >
+      {iconPath && (
+        <div className='arrow-icon absolute top-1/2 left-[16px] -translate-y-1/2'>
+          <ImageWrapper path={iconPath} className='max-w-[20px]' />
+        </div>
+      )}
       {value}
     </Link>
   );

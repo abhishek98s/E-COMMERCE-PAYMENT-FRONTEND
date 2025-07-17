@@ -9,7 +9,7 @@ const DetailImage = ({ detailData }: DetailImageProps) => {
   return (
     <div className='relative w-full col-span-6 border-neutral-200'>
       <ImageWrapper
-        className='rounded-[8px] p-4 h-[400px] aspect-[1.5]'
+        className='zoom rounded-[8px] p-4 h-[400px] aspect-[1.5]'
         path={detailData.image}
       />
 

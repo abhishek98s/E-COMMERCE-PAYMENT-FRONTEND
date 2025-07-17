@@ -38,7 +38,7 @@ const Pagination = ({
       <button
         onClick={() => onBtnClick(-1)}
         disabled={currentPage === 1 ? true : false}
-        className={`${currentPage === 1 ? 'opacity-20' : ''} prev flex-center rounded-[8px] px-3 min-h-[44px] bg-neutral-0 border-neutral-200`}
+        className={`${currentPage === 1 ? 'opacity-20' : 'cursor-pointer'} prev flex-center rounded-[8px] px-3 min-h-[44px] bg-neutral-0 border-neutral-200`}
       >
         Previous
       </button>
@@ -60,7 +60,7 @@ const Pagination = ({
       <button
         onClick={() => onBtnClick(1)}
         disabled={currentPage === totalPage ? true : false}
-        className={`${currentPage === totalPage ? 'opacity-20' : ''} next flex-center rounded-[8px] px-3 min-h-[44px] bg-neutral-0 border-neutral-200`}
+        className={`${currentPage === totalPage ? 'opacity-20' : 'cursor-pointer'} next flex-center rounded-[8px] px-3 min-h-[44px] bg-neutral-0 border-neutral-200`}
       >
         Next
       </button>

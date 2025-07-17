@@ -25,6 +25,17 @@ body {
 			object-fit: cover;
 		}
 	}
+
+	&.zoom {
+		overflow: hidden;
+		transition: .2s ease-in-out;
+
+		&:hover {
+			img {
+				scale: 1.05;
+			}
+		}
+	}
 }
 
 .flex-center {
@@ -38,7 +49,6 @@ a[type="button"] {
 	&:hover,
 	&:focus-visible,
 	&:focus-within {
-		background-color: $neutral-900;
 		opacity: 0.9;
 	}
 }
@@ -70,6 +80,33 @@ input {
 .animation-scale-down {
 	animation: scale-down .4s ease;
 }
+
+.btn {
+	transition: .2s ease-out;
+
+	&:hover {
+		opacity: 0.9;
+
+		.arrow-icon {
+			left: 8px;
+		}
+	}
+
+	&.animation-up {
+		&:hover {
+			background-color: $neutral-1000;
+			opacity: 0.9;
+			transform: translateY(-2px);
+		}
+	}
+
+	&-secondary {
+		&:hover {
+			background-color: $neutral-100;
+		}
+	}
+}
+
 
 @keyframes scale-down {
 	from {
