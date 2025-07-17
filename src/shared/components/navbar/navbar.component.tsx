@@ -1,7 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 import ImageWrapper from '../img-wrapper/img-wrapper.component';
+import { useContext } from 'react';
+import { CartContext } from '@/shared/context/cart.context';
 
 const Navbar = () => {
+  const { cart, setCart } = useContext(CartContext);
+
   return (
     <nav className={`border-bottom-neutral-200 bg-neutral-0`}>
       <div className='container px-[20px] mx-auto border-red-100 border-b-0'>
@@ -19,7 +25,7 @@ const Navbar = () => {
               flex-center
             />
             <div className='absolute flex-center bg-neutral-1000 text-white rounded-full block text-[12px] font-bold top-0 right-0 translate-x-[10px] translate-y-[-10px] size-[24px]'>
-              1
+              {cart.length}
             </div>
           </Link>
         </div>

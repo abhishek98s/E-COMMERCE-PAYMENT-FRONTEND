@@ -15,6 +15,7 @@ type ButtonProps = {
   link?: string;
   alignLeft?: boolean;
   iconPath?: string;
+  clickFunc?: () => void;
 };
 
 const Button = ({
@@ -25,11 +26,13 @@ const Button = ({
   link = '#',
   alignLeft = false,
   iconPath = '',
+  clickFunc,
 }: ButtonProps) => {
   return (
     <Link
       href={link}
       type={type}
+      onClick={clickFunc}
       className={`${className} ${btnStyle[btnType]} ${alignLeft ? '' : 'justify-center'} btn relative inline-flex items-center w-full rounded-[8px] min-h-[44px] font-[600] text-[16px] tracking-[0.5px]`}
     >
       {iconPath && (
