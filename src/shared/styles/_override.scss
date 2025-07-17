@@ -53,6 +53,10 @@ a[type="button"] {
 	}
 }
 
+button {
+	cursor: pointer;
+}
+
 input {
 	background-color: $neutral-50;
 	border: 1px solid $neutral-200;
