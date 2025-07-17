@@ -1,21 +1,35 @@
-import { useEffect, useState } from 'react';
+'use client';
 
-type useLocalStoregeProps = {
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+
+type useLocalStorageProps<A> = {
   key: string;
-  initialValue: string;
+  initialValue: A[];
 };
 
-const useLocalStorege = ({ key, initialValue }: useLocalStoregeProps) => {
-  const [value, setValue] = useState(() => {
-    const storedValue = window.localStorage.getItem(key);
-    return storedValue ? JSON.parse(storedValue) : initialValue;
-  });
+const useLocalStorage = <A,>({
+  key,
+  initialValue,
+}: useLocalStorageProps<A>): [A[], Dispatch<SetStateAction<A[]>>] => {
+  const [value, setValue] = useState<A[]>(initialValue!);
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
+    if (typeof window !== 'undefined') {
+      const storedValue = localStorage.getItem(key);
+      if (storedValue) {
+        const parseStoredValue = JSON.parse(storedValue);
+        setValue(parseStoredValue);
+      }
+    }
+  }, [key]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
   }, [key, value]);
 
   return [value, setValue];
 };
 
-export default useLocalStorege;
+export default useLocalStorage;
