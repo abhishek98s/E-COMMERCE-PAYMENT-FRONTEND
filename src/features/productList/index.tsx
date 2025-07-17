@@ -6,6 +6,10 @@ type ProductListProps = {
 };
 
 const ProductList = ({ productList }: ProductListProps) => {
+  if (!productList.length) {
+    return <div className=''>No products</div>;
+  }
+
   return (
     <>
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] p-4'>
