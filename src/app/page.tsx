@@ -3,7 +3,7 @@
 import Pagination from '@/features/pagination';
 import ProductFilter from '@/features/product-filter';
 import { IFilter } from '@/features/product-filter/types';
-import ProductList from '@/features/productList';
+import ProductList from '@/features/product-list';
 import ErrorWrapper from '@/shared/components/error';
 
 import { useFetch } from '@/shared/hooks/use-fetch.hooks';

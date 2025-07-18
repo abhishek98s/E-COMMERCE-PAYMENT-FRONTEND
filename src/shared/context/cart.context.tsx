@@ -2,7 +2,7 @@
 
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { IProduct } from '../types/products.types';
-import useLocalStorage from '../hooks/use-local-storage';
+import useLocalStorage from '../hooks/use-local-storage.hooks';
 import { ICart } from '../types/cart.types';
 
 type CartContextType = {

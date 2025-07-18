@@ -1,5 +1,5 @@
 import { IProduct } from '@/shared/types/products.types';
-import ProductBox from './components/product_box';
+import ProductBox from './components/product-box';
 import ProductLoader from './components/product-loader';
 
 type ProductListProps = {
