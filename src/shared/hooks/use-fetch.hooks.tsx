@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { axiosInterceptor } from '../utils/axois.config';
-import { APP_BASE_URL } from '../utils/app';
+import { APP_BASE_URL, errorMessages } from '../utils/app';
 import axios from 'axios';
+import useToast from './use-toast.hooks';
 
 export const useFetch = <T,>(url: string, options = {}) => {
+  const [showToast] = useToast();
   const [data, setData] = useState<T[] | null | T>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,11 +27,10 @@ export const useFetch = <T,>(url: string, options = {}) => {
       const err = (error as Error).message;
 
       if (axios.isCancel(err)) {
-        console.log('Request canceled:', err.message);
+        showToast(errorMessages.REQUEST_CANCELLED, 'error');
       } else {
         setError(err);
       }
-      console.log('useFetch error');
     } finally {
       setLoading(false);
     }
