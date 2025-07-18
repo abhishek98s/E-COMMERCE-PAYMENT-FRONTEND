@@ -1,6 +1,6 @@
-# ECOM: E-commerce Product Discovery App
+# E_COM: E-commerce Product Discovery App
 
-ECOM is a e-commerce platform whre users can view products and add products to their cart.
+ECOM is a e-commerce platform where users can view products and add products to their cart.
 
 ## Table of Contents
 
@@ -41,7 +41,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Technologies Used
 
-This project is built using the following technologies:
+This project is built using the following technologies:<br>
 Next js, Typescript, Tailwind CSS with custom design, Axios, React-toastify
 
 ## Features
@@ -53,5 +53,3 @@ Next js, Typescript, Tailwind CSS with custom design, Axios, React-toastify
 - **Search:** Search products by product title.
 - **Product Detail:** Access product information and description.
 - **Add to cart:** Add/remove products with quantity controls.
-
-## Live preview
