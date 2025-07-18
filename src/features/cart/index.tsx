@@ -10,7 +10,8 @@ const CartWrapper = () => {
     useContext(CartContext);
 
   const totalPrice = useMemo(() => {
-    return cart.reduce((a, b) => a + b.price * b.quantity, 0);
+    const total = cart.reduce((a, b) => a + b.price * b.quantity, 0);
+    return total.toFixed(2);
   }, [cart]);
 
   return (
@@ -36,22 +37,26 @@ const CartWrapper = () => {
 
       {!cart.length && <EmptyCart />}
 
-      <ul>
-        {cart.length > 0 &&
-          cart.map((c: ICart) => (
-            <CartItem
-              setQuantity={setQuantity}
-              deleteCartItem={deleteCartItem}
-              key={c.id}
-              cartItem={c}
-            />
-          ))}
-      </ul>
-
-      <div className='flex justify-between px-[16px] pt-[24px] mt-[32px] border-t-neutral-200 border border-l-0 border-r-0 border-b-0'>
-        <div className='text-[20px] opacity-80'>Total price</div>
-        <div className='text-[28px] font-bold total-price'>${totalPrice}</div>
-      </div>
+      {cart.length > 0 && (
+        <>
+          <ul>
+            {cart.map((c: ICart) => (
+              <CartItem
+                setQuantity={setQuantity}
+                deleteCartItem={deleteCartItem}
+                key={c.id}
+                cartItem={c}
+              />
+            ))}
+          </ul>
+          <div className='flex justify-between px-[16px] pt-[24px] mt-[32px] border-t-neutral-200 border border-l-0 border-r-0 border-b-0'>
+            <div className='text-[20px] opacity-80'>Total price</div>
+            <div className='text-[28px] font-bold total-price'>
+              ${totalPrice}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
