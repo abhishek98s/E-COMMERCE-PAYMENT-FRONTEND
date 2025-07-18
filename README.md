@@ -42,7 +42,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Technologies Used
 
 This project is built using the following technologies:
-HTML, CSS, SCSS, JS, Git, Tailwind CSS, Next js, Typescript, Axios
+Next js, Typescript, Tailwind CSS with custom design, Axios, React-toastify
 
 ## Features
 
