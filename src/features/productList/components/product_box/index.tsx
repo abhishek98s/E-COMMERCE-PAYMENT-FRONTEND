@@ -31,8 +31,6 @@ const ProductBox = ({ product }: ProductBoxProps) => {
       </div>
 
       <div className='rating font-bold text-[22px] mt-3'>${product.price}</div>
-
-      <Button className='mt-4' value='Add to cart' />
     </div>
   );
 };
