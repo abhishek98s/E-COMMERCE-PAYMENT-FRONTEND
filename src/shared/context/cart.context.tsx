@@ -9,7 +9,7 @@ type CartContextType = {
   cart: ICart[];
   setQuantity: (num: number, cartItemId: number) => void;
   setCart?: React.Dispatch<React.SetStateAction<ICart[]>>;
-  addToCart?: (cartItem: IProduct) => void;
+  addToCart: (cartItem: IProduct) => void;
   deleteCartItem: (cartItemID: number) => void;
   clearCart: () => void;
 };
@@ -19,6 +19,7 @@ export const CartContext = createContext<CartContextType>({
   setQuantity: () => {},
   deleteCartItem: () => {},
   clearCart: () => {},
+  addToCart: () => {},
 });
 
 type CartProviderProps = {

@@ -10,7 +10,7 @@ type DetailInformationProps = {
 };
 
 const DetailInformation = ({ detailData }: DetailInformationProps) => {
-  const { cart, setCart, addToCart } = useContext(CartContext);
+  const { cart, addToCart } = useContext(CartContext);
 
   return (
     <div className='detail-wrapper col-span-6'>
