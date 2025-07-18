@@ -4,13 +4,14 @@ import Pagination from '@/features/pagination';
 import ProductFilter from '@/features/product-filter';
 import { IFilter } from '@/features/product-filter/types';
 import ProductList from '@/features/productList';
+import ErrorWrapper from '@/shared/components/error';
 
 import { useFetch } from '@/shared/hooks/use-fetch.hooks';
 import { IProduct } from '@/shared/types/products.types';
 import { useEffect, useMemo, useState } from 'react';
 
 export default function Home() {
-  const { data, loading, error } = useFetch<IProduct>('/products');
+  const { data, loading, error, refetchData } = useFetch<IProduct>('/products');
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -66,6 +67,7 @@ export default function Home() {
   return (
     <>
       <ProductFilter allProducts={allProducts} setFilters={setFilters} />
+      {error && <ErrorWrapper refetchData={refetchData} />}
       <ProductList
         filterSearch={filters.search}
         loading={loading}

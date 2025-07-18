@@ -10,34 +10,33 @@ export const useFetch = <T,>(url: string, options = {}) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      const axiosInstance = axiosInterceptor();
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    const axiosInstance = axiosInterceptor();
 
-      try {
-        const response = await axiosInstance.get(`${APP_BASE_URL}/${url}`, {
-          ...options,
-        });
+    try {
+      const response = await axiosInstance.get(`${APP_BASE_URL}/${url}`, {
+        ...options,
+      });
 
-        setData(response.data);
-      } catch (error) {
-        const err = (error as Error).message;
+      setData(response.data);
+    } catch (error) {
+      const err = (error as Error).message;
 
-        if (axios.isCancel(err)) {
-          console.log('Request canceled:', err.message);
-        } else {
-          setError(err);
-        }
-        console.log('useFetch error');
-      } finally {
-        setLoading(false);
+      if (axios.isCancel(err)) {
+        console.log('Request canceled:', err.message);
+      } else {
+        setError(err);
       }
-    };
-
+      console.log('useFetch error');
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, [url]);
 
-  return { data, loading, error };
+  return { data, loading, error, refetchData: fetchData };
 };

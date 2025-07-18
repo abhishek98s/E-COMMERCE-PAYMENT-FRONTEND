@@ -15,7 +15,6 @@ const ProductSearch = ({ setSearchTitle }: ProductSearchProps) => {
         inputRef.current.value.length > 0 &&
         !inputRef.current.contains(event.target as Node)
       ) {
-        console.log(inputRef.current.value);
         inputRef.current.value = '';
         setSearchTitle(null);
       }

@@ -4,6 +4,7 @@ import './globals.scss';
 import '@/shared/styles/styles.scss';
 import Navbar from '@/shared/components/navbar/navbar.component';
 import { CartProvider } from '@/shared/context/cart.context';
+import { ToastContainer } from 'react-toastify';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,6 +35,18 @@ export default function RootLayout({
           <Navbar />
           <div className='container mx-auto px-2 my-5'>{children}</div>
         </CartProvider>
+        <ToastContainer
+          position='top-right'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme='colored'
+          />
       </body>
     </html>
   );
