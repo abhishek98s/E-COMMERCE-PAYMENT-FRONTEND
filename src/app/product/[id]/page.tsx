@@ -1,8 +1,8 @@
 'use client';
 
 import ProductDetail from '@/features/product-detail';
-import Button from '@/shared/components/button';
-import ImageWrapper from '@/shared/components/img-wrapper/img-wrapper.component';
+import DetailLoader from '@/features/product-detail/components/detail-loader';
+import DetailNotFound from '@/features/product-detail/components/detail-not-found';
 import { useFetch } from '@/shared/hooks/use-fetch.hooks';
 import { IProduct } from '@/shared/types/products.types';
 import { useParams } from 'next/navigation';
@@ -17,11 +17,11 @@ const ProductDetailPage = () => {
   }, [data, loading]);
 
   if (loading) {
-    return <div className='la'>Detail is loading</div>;
+    return <DetailLoader />;
   }
 
   if (!detailData) {
-    return <div className='la'>Product does not exist</div>;
+    return <DetailNotFound />;
   }
 
   return <ProductDetail detailData={detailData as IProduct} />;
