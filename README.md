@@ -7,7 +7,6 @@ ECOM is a e-commerce platform where users can view products and add products to 
 - [Getting Started](#getting-started)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
-- [Live preview](#live-preview)
 
 ## Getting Started
 
