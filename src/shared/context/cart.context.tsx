@@ -4,6 +4,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 import { IProduct } from '../types/products.types';
 import useLocalStorage from '../hooks/use-local-storage.hooks';
 import { ICart } from '../types/cart.types';
+import useToast from '../hooks/use-toast.hooks';
 
 type CartContextType = {
   cart: ICart[];
@@ -16,10 +17,10 @@ type CartContextType = {
 
 export const CartContext = createContext<CartContextType>({
   cart: [],
-  setQuantity: () => {},
-  deleteCartItem: () => {},
-  clearCart: () => {},
-  addToCart: () => {},
+  setQuantity: () => { },
+  deleteCartItem: () => { },
+  clearCart: () => { },
+  addToCart: () => { },
 });
 
 type CartProviderProps = {
@@ -28,6 +29,7 @@ type CartProviderProps = {
 
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cart, setCart] = useState<ICart[]>([]);
+  const [showToast] = useToast();
   const [value, setValue] = useLocalStorage<ICart>({
     key: 'cart',
   });
@@ -47,6 +49,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     const cartObj = { id, image, price, title, quantity: 1 };
 
     setValue([...value, cartObj]);
+    showToast('Product added to cart', 'success');
   };
 
   const setQuantity = (num: number, cartItemId: number) => {

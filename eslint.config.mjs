@@ -21,8 +21,10 @@ const eslintConfig = [
       'no-var': 'error',
       'prefer-const': 'error',
       'eol-last': ['error', 'always'],
-      'linebreak-style': ['error', 'unix'],
       'eol-last': ['error', 'always'],
+      'linebreak-style': 0,
+      endOfLine: 'auto',
+      singleQuote: true,
       'prettier/prettier': [
         'error',
         {
