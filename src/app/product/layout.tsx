@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.scss';
 import '@/shared/styles/styles.scss';
-import Navbar from '@/shared/components/navbar/navbar.component';
 import { CartProvider } from '@/shared/context/cart.context';
 import { ToastContainer } from 'react-toastify';
 
