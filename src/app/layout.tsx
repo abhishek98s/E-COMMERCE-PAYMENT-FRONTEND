@@ -31,8 +31,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
         <CartProvider>
+          <Navbar />
           <div className='container mx-auto px-2 my-5'>{children}</div>
         </CartProvider>
         <ToastContainer

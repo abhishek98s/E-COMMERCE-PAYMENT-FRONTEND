@@ -7,6 +7,7 @@ import { CartContext } from '@/shared/context/cart.context';
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
+  console.log(cart);
 
   return (
     <nav className={`border-bottom-neutral-200 bg-neutral-0`}>
