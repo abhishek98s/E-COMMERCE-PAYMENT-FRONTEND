@@ -14,7 +14,7 @@ const DetailInformation = ({ detailData }: DetailInformationProps) => {
 
   return (
     <div className='detail-wrapper col-span-6'>
-      <div className='category mt-3 text-[16px] line-clamp-1 w-fit p-[2px_12px] color-neutral-500 opacity-80 border-neutral-200 bg-neutral-50 rounded-full'>
+      <div className='hidden category mt-3 text-[16px] line-clamp-1 w-fit p-[2px_12px] color-neutral-500 opacity-80 border-neutral-200 bg-neutral-50 rounded-full'>
         {detailData.category}
       </div>
       <div className='mt-3 text-[24px] font-bold text-neutral-800 lg:text-[28px]'>

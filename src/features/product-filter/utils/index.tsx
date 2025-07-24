@@ -2,7 +2,6 @@ export const sortByList = [
   'Default',
   'low-high',
   'high-low',
-  'rating',
   'title',
 ];
 

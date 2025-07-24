@@ -13,7 +13,7 @@ const DetailImage = ({ detailData }: DetailImageProps) => {
         path={detailData.image}
       />
 
-      <div className='absolute rating font-bold z-20 bottom-2 right-2'>
+      <div className='hidden absolute rating font-bold z-20 bottom-2 right-2'>
         <div className='flex justify-center items-center content-center text-[16px] font-medium min-w-[130px] py-2 border-neutral-100 bg-neutral-0 rounded-full'>
           <ImageWrapper
             path='/icons/star.svg'

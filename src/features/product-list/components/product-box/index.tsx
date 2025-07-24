@@ -14,7 +14,7 @@ const ProductBox = ({ product }: ProductBoxProps) => {
         <ImageWrapper className='zoom aspect-[1.5] ' path={product.image} />
       </Link>
 
-      <div className='category mt-3 text-[14px] line-clamp-1 w-fit p-[2px_12px] color-neutral-500 opacity-80 border-neutral-200 bg-neutral-50 rounded-full'>
+      <div className='hidden category mt-3 text-[14px] line-clamp-1 w-fit p-[2px_12px] color-neutral-500 opacity-80 border-neutral-200 bg-neutral-50 rounded-full'>
         {product.category}
       </div>
 
@@ -25,7 +25,7 @@ const ProductBox = ({ product }: ProductBoxProps) => {
         {product.title}
       </Link>
 
-      <div className='flex items-center text-[14px] font-medium gap-[6px] mt-2'>
+      <div className='hidden flex items-center text-[14px] font-medium gap-[6px] mt-2'>
         <ImageWrapper path='icons/star.svg' className='max-w-[18px]' />
         <div className='rating leading-none'>{product.rating.rate}</div>
       </div>
