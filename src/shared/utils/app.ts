@@ -1,4 +1,4 @@
-export const APP_BASE_URL = 'https://fakestoreapi.com/';
+export const APP_BASE_URL = 'http://localhost:5000/api';
 
 export const errorMessages = {
   NOT_FOUND: 'Failed to load data. Please try again.',

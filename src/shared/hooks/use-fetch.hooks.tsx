@@ -18,11 +18,12 @@ export const useFetch = <T,>(url: string, options = {}) => {
     const axiosInstance = axiosInterceptor();
 
     try {
-      const response = await axiosInstance.get(`${APP_BASE_URL}/${url}`, {
+      url = url.startsWith('/') ? url : `/${url}`;
+      const response = await axiosInstance.get(`${APP_BASE_URL}${url}`, {
         ...options,
       });
 
-      setData(response.data);
+      setData(response.data.data);
     } catch (error) {
       const err = (error as Error).message;
 
