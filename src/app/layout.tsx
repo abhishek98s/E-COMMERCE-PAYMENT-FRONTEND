@@ -31,6 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Navbar />
         <CartProvider>
           <div className='container mx-auto px-2 my-5'>{children}</div>
         </CartProvider>
@@ -45,7 +46,7 @@ export default function RootLayout({
           draggable
           pauseOnHover
           theme='colored'
-          />
+        />
       </body>
     </html>
   );
