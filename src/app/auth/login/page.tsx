@@ -6,6 +6,7 @@ import Button from "@/shared/components/button";
 import Input from "@/shared/components/input";
 import * as Yup from "yup";
 import useYup from "@/shared/hooks/use-yup.hooks";
+import Link from "next/link";
 
 type LoginCredentials = {
     username: string;
@@ -35,6 +36,9 @@ const Login = () => {
             <Input type="password" placeholder="Password" value={credentials.password} onChange={(e) => setCredentials({ ...credentials, password: e.target.value })} />
 
             <Button value="Login" clickFunc={handleLogin} />
+            <p className="text-center text-neutral-700 text-sm mt-2">
+                Don't have an account? <Link href="/auth/register">Register</Link>
+            </p>
         </form>
     )
 }

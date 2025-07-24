@@ -8,7 +8,6 @@ import Button from '../button';
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
-  console.log(cart);
 
   return (
     <nav className={`border-bottom-neutral-200 bg-neutral-0`}>

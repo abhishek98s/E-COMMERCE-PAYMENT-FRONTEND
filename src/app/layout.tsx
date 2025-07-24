@@ -32,7 +32,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CartProvider>
-          <Navbar />
+          {(typeof window !== 'undefined' &&
+            !window.location.pathname.includes('/auth')) && <Navbar />}
           <div className='container mx-auto px-2 my-5'>{children}</div>
         </CartProvider>
         <ToastContainer

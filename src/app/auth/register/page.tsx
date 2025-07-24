@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import Button from "@/shared/components/button";
 import Input from "@/shared/components/input";
 import useYup from "@/shared/hooks/use-yup.hooks";
+import Link from "next/link";
 
 type RegisterCredentials = {
     username: string;
@@ -39,6 +40,9 @@ const Register = () => {
             <Input type="password" placeholder="Password" value={credentials.password} onChange={(e) => setCredentials({ ...credentials, password: e.target.value })} />
 
             <Button value="Register" clickFunc={handleRegister} />
+            <p className="text-center text-neutral-700 text-sm mt-2">
+                Don't have an account? <Link href="/auth/login">Login</Link>
+            </p>
         </form>
     )
 }
