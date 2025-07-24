@@ -4,6 +4,7 @@ import Link from 'next/link';
 import ImageWrapper from '../img-wrapper/img-wrapper.component';
 import { useContext } from 'react';
 import { CartContext } from '@/shared/context/cart.context';
+import Button from '../button';
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
@@ -12,13 +13,13 @@ const Navbar = () => {
   return (
     <nav className={`border-bottom-neutral-200 bg-neutral-0`}>
       <div className="container px-[20px] mx-auto border-red-100 border-b-0">
-        <div className="flex min-h-[80px] justify-between items-center px-2">
+        <div className="flex min-h-[80px] items-center px-2">
           <div className="logo font-bold text-[20px] text-neutral-900">
             <Link href={'/'}>E_COM</Link>
           </div>
           <Link
             href={`/cart`}
-            className="cart-wrapper relative flex-center size-[44px] bg-neutral-50 border-neutral-200 rounded-full "
+            className="cart-wrapper ms-auto relative flex-center size-[44px] bg-neutral-50 border-neutral-200 rounded-full "
           >
             <ImageWrapper
               className="size-[18px]"
@@ -29,6 +30,12 @@ const Navbar = () => {
               {cart.length}
             </div>
           </Link>
+
+          <Button
+            value='Logout'
+            btnType='secondary'
+            className='ms-[16px] max-w-[120px]'
+          />
         </div>
       </div>
     </nav>
