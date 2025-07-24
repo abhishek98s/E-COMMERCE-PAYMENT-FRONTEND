@@ -12,7 +12,7 @@ import { useMemo } from 'react';
 const ProductDetailPage = () => {
   const { id } = useParams();
   const { data, loading, error, refetchData } = useFetch<IProduct>(
-    `products/${id}`
+    `product/${id}`
   );
 
   const detailData = useMemo(() => {

@@ -11,7 +11,7 @@ import { IProduct } from '@/shared/types/products.types';
 import { useEffect, useMemo, useState } from 'react';
 
 export default function Home() {
-  const { data, loading, error, refetchData } = useFetch<IProduct>('/products');
+  const { data, loading, error, refetchData } = useFetch<IProduct>('/product');
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -45,8 +45,6 @@ export default function Home() {
       result.sort((a: IProduct, b: IProduct) => a.price - b.price);
     } else if (sortBy === 'high-low') {
       result.sort((a: IProduct, b: IProduct) => b.price - a.price);
-    } else if (sortBy === 'rating') {
-      result.sort((a: IProduct, b: IProduct) => b.rating.rate - a.rating.rate);
     } else if (sortBy === 'title') {
       result.sort((a: IProduct, b: IProduct) =>
         a.title.toLowerCase().localeCompare(b.title.toLowerCase())
