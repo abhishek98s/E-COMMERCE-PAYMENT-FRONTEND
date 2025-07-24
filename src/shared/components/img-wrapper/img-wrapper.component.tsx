@@ -5,7 +5,7 @@ type ImageWrapperProps = {
 };
 
 const ImageWrapper = ({ className, path, contain }: ImageWrapperProps) => {
-  const altName = path.split('.')[0];
+  const altName = path.split('.').slice(-2)[0];
   return (
     <figure className={`img-wrapper ${className}`}>
       <img
