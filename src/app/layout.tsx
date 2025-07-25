@@ -5,6 +5,7 @@ import '@/shared/styles/styles.scss';
 import Navbar from '@/shared/components/navbar/navbar.component';
 import { CartProvider } from '@/shared/context/cart.context';
 import { ToastContainer } from 'react-toastify';
+import { AuthProvider } from '@/shared/context/auth.context';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,9 +32,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CartProvider>
-          <div className=''>{children}</div>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <div className=''>{children}</div>
+          </CartProvider>
+        </AuthProvider>
         <ToastContainer
           position='top-right'
           autoClose={5000}

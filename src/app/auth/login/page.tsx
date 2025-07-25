@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Button from "@/shared/components/button";
 import Input from "@/shared/components/input";
@@ -10,6 +10,7 @@ import Link from "next/link";
 import { AuthService } from "@/shared/service/auth/auth.service";
 import useToast from "@/shared/hooks/use-toast.hooks";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/shared/context/auth.context";
 
 type LoginCredentials = {
     email: string;
@@ -24,6 +25,7 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
     const { validate } = useYup<LoginCredentials>();
+    const { dispatch } = useContext(AuthContext)
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
@@ -43,7 +45,7 @@ const Login = () => {
         const { data: token, message, success: loginSuccess } = await authService.login(credentials);
         if (loginSuccess) {
             localStorage.setItem('token', token);
-            localStorage.setItem('isAuth', 'true');
+            dispatch({ type: 'LOGIN' })
             showToast(message, 'success');
             router.push('/');
         }
