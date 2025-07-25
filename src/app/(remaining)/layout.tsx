@@ -14,9 +14,11 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className='container mx-auto px-2 my-5'>
+    <>
       <Navbar />
-      {children}
-    </div>
+      <div className='container mx-auto px-2 my-5'>
+        {children}
+      </div>
+    </>
   );
 }

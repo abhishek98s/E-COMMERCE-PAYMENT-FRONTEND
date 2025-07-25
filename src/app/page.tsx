@@ -66,23 +66,26 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <ProductFilter allProducts={allProducts} setFilters={setFilters} />
-      {error && <ErrorWrapper refetchData={refetchData} />}
-      <ProductList
-        filterSearch={filters.search}
-        loading={loading}
-        productList={currentItems}
-      />
-      <Pagination
-        allProducts={
-          filters.category !== 'All' || filters.search
-            ? currentItems
-            : allProducts
-        }
-        itemPerPage={itemPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      <div className="container mx-auto px-2 my-5">
+
+        <ProductFilter allProducts={allProducts} setFilters={setFilters} />
+        {error && <ErrorWrapper refetchData={refetchData} />}
+        <ProductList
+          filterSearch={filters.search}
+          loading={loading}
+          productList={currentItems}
+        />
+        <Pagination
+          allProducts={
+            filters.category !== 'All' || filters.search
+              ? currentItems
+              : allProducts
+          }
+          itemPerPage={itemPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
     </>
   );
 }

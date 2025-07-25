@@ -41,9 +41,9 @@ const Login = () => {
         }
 
         const { data: token, message, success: loginSuccess } = await authService.login(credentials);
-        console.log(token)
         if (loginSuccess) {
             localStorage.setItem('token', token);
+            localStorage.setItem('isAuth', 'true');
             showToast(message, 'success');
             router.push('/');
         }

@@ -1,13 +1,23 @@
 'use client';
 
 import Link from 'next/link';
-import ImageWrapper from '../img-wrapper/img-wrapper.component';
 import { useContext } from 'react';
+
 import { CartContext } from '@/shared/context/cart.context';
+import useLocalStorage from '@/shared/hooks/use-local-storage.hooks';
+import ImageWrapper from '../img-wrapper/img-wrapper.component';
 import Button from '../button';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
+  const [isLoggedin] = useLocalStorage<string>({ key: 'isAuth' })
+  const router = useRouter();
+
+  const handleLogout = () => {
+    router.push('/')
+    localStorage.clear();
+  }
 
   return (
     <nav className={`border-bottom-neutral-200 bg-neutral-0`}>
@@ -30,11 +40,22 @@ const Navbar = () => {
             </div>
           </Link>
 
-          <Button
-            value='Logout'
-            btnType='secondary'
-            className='ms-[16px] max-w-[120px]'
-          />
+          {isLoggedin.length > 0 &&
+            <Button
+              value='Logout'
+              clickFunc={handleLogout}
+              btnType='secondary'
+              className='ms-[16px] max-w-[120px]'
+            />
+          }
+          {!(isLoggedin.length > 0) &&
+            <Button
+              value='Login/ Register'
+              link='/auth/login'
+              btnType='secondary'
+              className='ms-[16px] max-w-[150px]'
+            />
+          }
         </div>
       </div>
     </nav>

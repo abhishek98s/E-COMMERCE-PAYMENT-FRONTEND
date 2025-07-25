@@ -7,6 +7,9 @@ import Button from "@/shared/components/button";
 import Input from "@/shared/components/input";
 import useYup from "@/shared/hooks/use-yup.hooks";
 import Link from "next/link";
+import { AuthService } from "@/shared/service/auth/auth.service";
+import useToast from "@/shared/hooks/use-toast.hooks";
+import { useRouter } from "next/navigation";
 
 type RegisterCredentials = {
     username: string;
@@ -29,8 +32,24 @@ const Register = () => {
         email: "",
     })
 
-    const handleRegister = () => {
-        validate(validationSchema, credentials);
+    const authService = new AuthService();
+    const [showToast] = useToast();
+    const router = useRouter();
+
+
+    const handleRegister = async () => {
+        const { success, errors } = validate(validationSchema, credentials);
+
+        if (!success) {
+            showToast(errors[0], 'error');
+            return;
+        }
+
+        const { message, success: loginSuccess } = await authService.register(credentials);
+        if (loginSuccess) {
+            showToast(message!, 'success');
+            router.push('/auth/login');
+        }
     }
 
     return (
