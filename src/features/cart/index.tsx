@@ -4,6 +4,7 @@ import { ICart } from '@/shared/types/cart.types';
 import { useContext, useMemo } from 'react';
 import CartItem from './components/cart-item';
 import EmptyCart from './components/empty-cart';
+import Checkout from './components/checkout';
 
 const CartWrapper = () => {
   const { cart, setQuantity, deleteCartItem, clearCart } =
@@ -57,6 +58,7 @@ const CartWrapper = () => {
           </div>
         </>
       )}
+      <Checkout totalPrice={totalPrice}/>
     </div>
   );
 };
