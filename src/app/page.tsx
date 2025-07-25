@@ -5,6 +5,7 @@ import ProductFilter from '@/features/product-filter';
 import { IFilter } from '@/features/product-filter/types';
 import ProductList from '@/features/product-list';
 import ErrorWrapper from '@/shared/components/error';
+import Navbar from '@/shared/components/navbar/navbar.component';
 
 import { useFetch } from '@/shared/hooks/use-fetch.hooks';
 import { IProduct } from '@/shared/types/products.types';
@@ -64,6 +65,7 @@ export default function Home() {
 
   return (
     <>
+      <Navbar />
       <ProductFilter allProducts={allProducts} setFilters={setFilters} />
       {error && <ErrorWrapper refetchData={refetchData} />}
       <ProductList
