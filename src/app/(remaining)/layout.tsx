@@ -17,7 +17,9 @@ export default function AuthLayout({
     <>
       <Navbar />
       <div className='container mx-auto px-2 my-5'>
-        {children}
+        <div className="bg-neutral-0 border-neutral-100 rounded-[12px] p-4">
+          {children}
+        </div>
       </div>
     </>
   );

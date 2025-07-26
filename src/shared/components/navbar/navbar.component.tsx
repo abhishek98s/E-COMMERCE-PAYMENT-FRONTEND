@@ -1,23 +1,22 @@
 'use client';
 
 import Link from 'next/link';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { CartContext } from '@/shared/context/cart.context';
 import ImageWrapper from '../img-wrapper/img-wrapper.component';
 import Button from '../button';
-import { useRouter } from 'next/navigation';
 import { AuthContext } from '@/shared/context/auth.context';
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
   const { role, isAuthenticated, dispatch } = useContext(AuthContext);
-  const router = useRouter();
-
   const handleLogout = () => {
-    router.push('/auth/login')
+    window.location.href = '/'
     dispatch({ type: 'LOGOUT' })
     localStorage.clear();
+    document.cookie = 'isAuth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
   return (
@@ -27,36 +26,42 @@ const Navbar = () => {
           <div className="logo font-bold text-[20px] text-neutral-900">
             <Link href={'/'}>E_COM</Link>
           </div>
-          <Link
-            href={`/cart`}
-            className="cart-wrapper ms-auto relative flex-center size-[44px] bg-neutral-50 border-neutral-200 rounded-full "
-          >
-            <ImageWrapper
-              className="size-[18px]"
-              path="/icons/cart.svg"
-              flex-center
-            />
-            <div className="absolute flex-center bg-neutral-1000 text-white rounded-full block text-[12px] font-bold top-0 right-0 translate-x-[10px] translate-y-[-10px] size-[24px]">
-              {cart.length}
-            </div>
-          </Link>
+          <div className="ms-auto flex gap-[16px]">
 
-          {isAuthenticated && role === 'user' &&
-            <Button
-              value='Logout'
-              clickFunc={handleLogout}
-              btnType='secondary'
-              className='ms-[16px] max-w-[120px]'
-            />
-          }
-          {!isAuthenticated &&
-            <Button
-              value='Login/ Register'
-              link='/auth/login'
-              btnType='secondary'
-              className='ms-[16px] max-w-[150px]'
-            />
-          }
+            {role !== 'admin' &&
+              <Link
+                href={`/cart`}
+                className="cart-wrapper ms-auto relative flex-center size-[44px] bg-neutral-50 border-neutral-200 rounded-full "
+              >
+                <ImageWrapper
+                  className="size-[18px]"
+                  path="/icons/cart.svg"
+                  flex-center
+                />
+                <div className="absolute flex-center bg-neutral-1000 text-white rounded-full block text-[12px] font-bold top-0 right-0 translate-x-[10px] translate-y-[-10px] size-[24px]">
+                  {cart.length}
+                </div>
+              </Link>
+            }
+
+
+            {isAuthenticated &&
+              <Button
+                value='Logout'
+                clickFunc={handleLogout}
+                btnType='secondary'
+                className='ms-[16px] max-w-[120px]'
+              />
+            }
+            {!isAuthenticated &&
+              <Button
+                value='Login/ Register'
+                link='/auth/login'
+                btnType='secondary'
+                className='ms-[16px] max-w-[150px]'
+              />
+            }
+          </div>
         </div>
       </div>
     </nav>

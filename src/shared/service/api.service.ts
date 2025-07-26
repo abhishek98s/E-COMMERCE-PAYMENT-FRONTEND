@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { APP_BASE_URL } from '../utils/app';
+import { AuthContext } from '../context/auth.context';
 
 export class ApiService {
   protected axiosInstance: AxiosInstance;
@@ -34,6 +35,13 @@ export class ApiService {
         return Promise.reject(error);
       }
     );
+    this.axiosInstance.interceptors.request.use((config) => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    });
   }
 
   get<T>(url: string, options?: AxiosRequestConfig): Promise<T> {

@@ -19,7 +19,7 @@ type AuthContextType = {
 export const AuthContext = createContext<AuthContextType>({
     isAuthenticated: false,
     dispatch: () => { },
-    role: 'user',
+    role: '',
     roleDispatch: () => { }
 })
 
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                     return state;
             }
         },
-        'user'
+        ''
     );
 
     useEffect(() => {
@@ -68,10 +68,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
         const role = localStorage.getItem('role')
         const parsedRole = JSON.parse(role!)
+        console.log(role, parsedRole)
 
-        if (!parsedRole) {
-            localStorage.setItem('role', JSON.stringify(role))
-        } else {
+        if(parsedRole == 'admin'){
+            roleDispatch({ type: 'ADMIN' })
+        }
+        if(parsedRole == 'user'){
             roleDispatch({ type: 'USER' })
         }
     }, []);
