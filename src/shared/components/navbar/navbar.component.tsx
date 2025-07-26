@@ -11,7 +11,7 @@ import { AuthContext } from '@/shared/context/auth.context';
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
-  const { isAuthenticated, dispatch } = useContext(AuthContext);
+  const { role, isAuthenticated, dispatch } = useContext(AuthContext);
   const router = useRouter();
 
   const handleLogout = () => {
@@ -41,7 +41,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {isAuthenticated &&
+          {isAuthenticated && role === 'user' &&
             <Button
               value='Logout'
               clickFunc={handleLogout}

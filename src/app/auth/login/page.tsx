@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
     const { validate } = useYup<LoginCredentials>();
-    const { dispatch } = useContext(AuthContext)
+    const { dispatch, roleDispatch } = useContext(AuthContext)
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
@@ -46,7 +46,12 @@ const Login = () => {
         if (loginSuccess) {
             localStorage.setItem('token', token);
             document.cookie = 'isAuth=true; path=/; max-age=86400';
-            dispatch({ type: 'LOGIN' })
+            dispatch({ type: 'LOGIN' }) 
+
+            if (credentials.email.includes('admin')) {
+                roleDispatch({ type: 'ADMIN' })
+            }
+
             showToast(message, 'success');
             router.push('/');
         }
