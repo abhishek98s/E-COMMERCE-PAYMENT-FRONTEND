@@ -45,6 +45,7 @@ const Login = () => {
         const { data: token, message, success: loginSuccess } = await authService.login(credentials);
         if (loginSuccess) {
             localStorage.setItem('token', token);
+            document.cookie = 'isAuth=true; path=/; max-age=86400';
             dispatch({ type: 'LOGIN' })
             showToast(message, 'success');
             router.push('/');
