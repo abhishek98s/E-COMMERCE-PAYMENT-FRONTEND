@@ -16,22 +16,22 @@ const CartWrapper = () => {
   }, [cart]);
 
   return (
-    <div className='cart-page bg-neutral-0 border-neutral-50 rounded-[12px] p-4'>
-      <div className='flex justify-between mb-4'>
+    <div className="cart-page bg-neutral-0 border-neutral-50 rounded-[12px] p-4">
+      <div className="flex justify-between mb-4">
         <Button
-          link='/'
-          value='Back'
-          btnType='secondary'
-          iconPath='/icons/arrow-left.svg'
-          className='max-w-[120px]'
+          link="/"
+          value="Back"
+          btnType="secondary"
+          iconPath="/icons/arrow-left.svg"
+          className="max-w-[120px]"
         />
 
         {cart.length > 0 && (
           <Button
             clickFunc={clearCart}
-            value='Clear Cart'
-            btnType='secondary'
-            className='max-w-[120px]'
+            value="Clear Cart"
+            btnType="secondary"
+            className="max-w-[120px]"
           />
         )}
       </div>
@@ -50,15 +50,15 @@ const CartWrapper = () => {
               />
             ))}
           </ul>
-          <div className='flex justify-between px-[16px] pt-[24px] mt-[32px] border-t-neutral-200 border border-l-0 border-r-0 border-b-0'>
-            <div className='text-[20px] opacity-80'>Total price</div>
-            <div className='text-[28px] font-bold total-price'>
-              ${totalPrice}
+          <div className="flex justify-between px-[16px] pt-[24px] mt-[32px] border-t-neutral-200 border border-l-0 border-r-0 border-b-0">
+            <div className="text-[20px] opacity-80">Total price</div>
+            <div className="text-[28px] font-bold total-price">
+              Rs{Math.round(Number(totalPrice)).toString()}
             </div>
           </div>
         </>
       )}
-      <Checkout totalPrice={totalPrice}/>
+      <Checkout totalPrice={Math.round(Number(totalPrice)).toString()} />
     </div>
   );
 };

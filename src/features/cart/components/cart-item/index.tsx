@@ -30,7 +30,9 @@ const CartItem = ({ cartItem, setQuantity, deleteCartItem }: CartItemProps) => {
 
         <div className="info">
           <div className="text-[18px] font-bold">{cartItem.title}</div>
-          <div className="text-[16px] ">${cartItem.price}</div>
+          <div className="text-[16px] ">
+            Rs{Math.round(Number(cartItem.price)).toString()}
+          </div>
 
           <div className="flex items-center gap-[8px] mt-3">
             <button
